@@ -1,0 +1,29 @@
+{% extends 'emailservice/base.html'%}
+{% block content %}
+<form class="row" method="post" enctype="multipart/form-data">
+    <div class="conteiner">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-titel">
+                            Регистрация
+                        </h3>
+                        <div class="card-body">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            Зарегестрировать
+                        </button>
+                        <h6 class="card-title">
+                            Для подтверждения регистрации вам будет отправлена ссылка
+                        </h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}
