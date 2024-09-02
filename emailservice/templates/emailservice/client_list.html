@@ -1,0 +1,56 @@
+{% extends 'emailservice/base.html'%}
+{% block content %}
+
+<hr class="col-3 col-md-2 mb-5">
+
+<div class="row g-5">
+    <div class="col-md-12">
+        <h2>Список клиентов</h2>
+        <a href="{% url 'emailservice:create_client' user.pk %}" class="btn btn-primary my-2">Добавить клиента</a>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">№</th>
+                <th scope="col">Имя</th>
+                <th scope="col">Фамилия</th>
+                <th scope="col">imail</th>
+                <th scope="col">ККоментарий</th>
+                <th scope="col">Действие</th>
+            </tr>
+            </thead>
+
+            {% for client in object_list %}
+            {% if user == client.owner %}
+            <tbody>
+            <tr>
+                <th scope="row">{{client.id}}</th>
+                <td>{{ client.name }}</td>
+                <td>{{ client.last_name }}</td>
+                <td>{{ client.email }}</td>
+                <td>{{ client.comment }}</td>
+                <td><a href="{% url 'emailservice:client_detail' client.pk %}">Открыть</a></td>
+            </tr>
+            </tbody>
+            {% endif %}
+            {% endfor %}
+        </table>
+        <ul class="icon-list">
+            <li><a href="https://github.com/twbs/bootstrap-npm-starter" rel="noopener" target="_blank">Bootstrap npm
+                starter</a></li>
+            <li class="text-muted">Bootstrap Parcel starter (coming soon!)</li>
+        </ul>
+    </div>
+
+    <div class="col-md-6">
+        <h2>Guides</h2>
+        <p>Read more detailed instructions and documentation on using or contributing to Bootstrap.</p>
+        <ul class="icon-list">
+            <li><a href="/docs/5.0/getting-started/introduction/">Bootstrap quick start guide</a></li>
+            <li><a href="/docs/5.0/getting-started/webpack/">Bootstrap Webpack guide</a></li>
+            <li><a href="/docs/5.0/getting-started/parcel/">Bootstrap Parcel guide</a></li>
+            <li><a href="/docs/5.0/getting-started/build-tools/">Contributing to Bootstrap</a></li>
+        </ul>
+    </div>
+</div>
+
+{% endblock %}

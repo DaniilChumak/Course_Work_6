@@ -1,0 +1,54 @@
+{% extends 'emailservice/base.html'%}
+{% block content %}
+{% load m_filter %}
+<hr class="col-3 col-md-2 mb-5">
+
+<div class="row g-5">
+    <div class="col-md-12">
+        <h2>Список ваших рассылок</h2>
+        <a href="{% url 'emailservice:create' user.pk %}" class="btn btn-primary my-2">Создать новую рассылку</a>
+        <a href="{% url 'emailservice:client_list' %}" class="btn btn-primary my-2">Список клиентов</a>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">№</th>
+                <th scope="col">Тема</th>
+                <th scope="col">Создана</th>
+                <th scope="col">Посдедняя отправка</th>
+                <th scope="col">Статус</th>
+                <th scope="col">Действия</th>
+            </tr>
+            </thead>
+
+            {% for mailing in object_list %}
+            {% if user == mailing.owner or user.is_staff %}
+            <tbody>
+            <tr>
+                <th scope="row">{{mailing.id}}</th>
+                <td>{{ mailing.name }}</td>
+                <td>{{ mailing.created_at }}</td>
+                <td>{{ mailing.last_send_at }}</td>
+                <td>{{ mailing.status_mail }}</td>
+                <td><a href="{% url 'emailservice:mailing_detail' mailing.pk %}">открыть</a></td>
+            </tr>
+            </tbody>
+            {% endif %}
+            {% endfor %}
+        </table>
+
+    </div>
+
+    <div class="col-md-6">
+        <h2>Guides</h2>
+        <p>Read more detailed instructions and documentation on using or contributing to Bootstrap.</p>
+        <ul class="icon-list">
+            <li><a href="/docs/5.0/getting-started/introduction/">Bootstrap quick start guide</a></li>
+            <li><a href="/docs/5.0/getting-started/webpack/">Bootstrap Webpack guide</a></li>
+            <li><a href="/docs/5.0/getting-started/parcel/">Bootstrap Parcel guide</a></li>
+            <li><a href="/docs/5.0/getting-started/build-tools/">Contributing to Bootstrap</a></li>
+        </ul>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'emailservice/base.html'%}
+{% block content %}
+<form class="row" method="post" enctype="multipart/form-data">
+    <div class="conteiner">
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-titel">
+                            Саздать рассылку
+                        </h3>
+                        <div class="card-body">
+                            {% csrf_token %}
+                            <input type="hidden" name="user" value="{{ user.pk }}">
+                            {{ form.as_p}}
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            {% if object %}
+                            Сохранить
+                            {% else %}
+                            Создать
+                        </button>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>>
+{% endblock %}
