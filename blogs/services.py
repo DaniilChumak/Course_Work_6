@@ -1,5 +1,4 @@
 from django.core.cache import cache
-
 from blogs.models import Article
 from config.settings import CACHE_ENABLED
 
