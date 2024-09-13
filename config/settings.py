@@ -1,18 +1,11 @@
 import os
 
 from pathlib import Path
-
-
+from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-
-
-
-
-SECRET_KEY = 'django-insecure-5)wlh*3vs(=7^7gt(*r-iw@h(t))6t+yv$w(^5b@0=x_$w60hr'
-
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 DEBUG = True
 
@@ -30,6 +23,7 @@ INSTALLED_APPS = [
     'users',
     'emailservice',
     'blogs',
+    'django_apscheduler',
 ]
 
 MIDDLEWARE = [

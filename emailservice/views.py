@@ -42,7 +42,7 @@ class ClientDeleteView(DeleteView):
     success_url = reverse_lazy('emailservice:client_list')
 
 
-class EmailservicePageVeiw(TemplateView):
+class EmailservicePageView(TemplateView):
     template_name = 'emailservice/start.html'
 
     def get_context_data(self, **kwargs):
