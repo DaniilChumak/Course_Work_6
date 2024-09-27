@@ -2,14 +2,14 @@ from django.urls import path
 from django.views.decorators.cache import cache_page
 
 from emailservice.apps import EmailserviceConfig
-from emailservice.views import EmailservicePageVeiw, EmailserviceListView, MailingCreateView, MailingUpdateView, \
+from emailservice.views import EmailservicePageView, EmailserviceListView, MailingCreateView, MailingUpdateView, \
     MailingDetailView, MailingDeleteView, ClientListView, ClientCreateView, ClientUpdateView, ClientDeleteView, \
     ClientDetailView, LogListView
 
 app_name = EmailserviceConfig.name
 
 urlpatterns = [
-    path('', EmailservicePageVeiw.as_view(), name='home'),
+    path('', EmailservicePageView.as_view(), name='home'),
     path('lk', EmailserviceListView.as_view(), name='lk'),
     path('create/<int:pk>/', MailingCreateView.as_view(), name='create'),
     path('edit/<int:pk>/', MailingUpdateView.as_view(), name='edit'),
